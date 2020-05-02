@@ -26,6 +26,11 @@ public class WorkforceController {
 
     @Autowired private WorkforceRepository workforceRepository;
 
+    @GetMapping(value = "/ping")
+    public String ping(){
+        return "OK";
+    }
+
     @GetMapping
     public List<Workforce> findAll(){
         logger.debug("findAll");

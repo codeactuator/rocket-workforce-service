@@ -23,7 +23,7 @@
         <appender-ref ref="FILE"/>
     </logger>
 
-    <logger name="com.codeactuator" level="debug" additivity="true">
+    <logger name="com.codeactuator" level="info" additivity="true">
         <appender-ref ref="CONSOLE"/>
     </logger>
 
