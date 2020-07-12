@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.codeactuator</groupId>
-	<artifactId>workforce-service</artifactId>
+	<artifactId>rocket-workforce-service</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 	<name>workforce-service</name>
 	<description>Workforce Service</description>
@@ -78,17 +78,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-datadog</artifactId>
-			<version>1.4.0</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.2.32</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.datadoghq/dd-java-agent -->
-		<dependency>
-			<groupId>com.datadoghq</groupId>
-			<artifactId>dd-java-agent</artifactId>
-			<version>0.47.0</version>
-		</dependency>
 
 	</dependencies>
 

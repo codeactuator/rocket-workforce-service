@@ -8,15 +8,12 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-//import org.springframework.metrics.export.datadog.DatadogCounter;
-//import org.springframework.metrics.export.datadog.EnableDatadogMetrics;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
 
 @SpringBootApplication
 @EnableEurekaClient
-//@EnableDatadogMetrics
 @EnableScheduling
 public class WorkforceServiceApplication implements ApplicationRunner {
 
