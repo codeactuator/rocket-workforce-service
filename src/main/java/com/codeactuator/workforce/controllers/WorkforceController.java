@@ -1,8 +1,7 @@
 package com.codeactuator.workforce.controllers;
 
+import com.codeactuator.rocket.domain.Workforce;
 import com.codeactuator.workforce.dao.WorkforceRepository;
-import com.codeactuator.workforce.domain.Workforce;
-
 import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 @RestController
 @RequestMapping(value = "/workforce")
