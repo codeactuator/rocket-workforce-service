@@ -1,4 +1,4 @@
-package com.codeactuator.workforce;
+package com.codeactuator.rocket;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

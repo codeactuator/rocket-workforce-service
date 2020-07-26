@@ -1,10 +1,13 @@
+server:
+  port: 0
+
 spring:
   application:
     name: workforce-service
 
-server:
-  port: 0
-
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 eureka:
   client:

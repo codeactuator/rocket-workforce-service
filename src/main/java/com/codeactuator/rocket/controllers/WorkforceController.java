@@ -1,11 +1,12 @@
-package com.codeactuator.workforce.controllers;
+package com.codeactuator.rocket.controllers;
 
+
+import com.codeactuator.rocket.dao.WorkforceRepository;
 import com.codeactuator.rocket.domain.Workforce;
-import com.codeactuator.workforce.dao.WorkforceRepository;
-import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,13 +17,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/workforce")
-@Timed
+@RequestMapping(value = "/rocket")
+@RefreshScope
 public class WorkforceController {
 
     private Logger logger = LoggerFactory.getLogger(WorkforceController.class.getName());
 
-    @Autowired private WorkforceRepository workforceRepository;
+    @Autowired
+    private WorkforceRepository workforceRepository;
 
     @GetMapping(value = "/ping")
     public String ping(){
@@ -34,7 +36,7 @@ public class WorkforceController {
         logger.debug("findAll");
         List<Workforce> workforces = new ArrayList<>();
         workforceRepository.findAll()
-                .forEach(workforce -> workforces.add(workforce));
+                .forEach(rocket -> workforces.add(rocket));
 
         logger.debug("findAll", workforces.stream().findFirst().get().toString());
         return workforces;
@@ -43,8 +45,8 @@ public class WorkforceController {
     @GetMapping("/{id}")
     public Workforce findById(@PathVariable("id") Integer id){
         logger.debug("findById");
-        Optional<Workforce> workforce = workforceRepository.findById(id);
-        logger.debug("findById", workforce.get().toString());
-        return workforce.get();
+        Optional<Workforce> rocket = workforceRepository.findById(id);
+        logger.debug("findById", rocket.get().toString());
+        return rocket.get();
     }
 }
