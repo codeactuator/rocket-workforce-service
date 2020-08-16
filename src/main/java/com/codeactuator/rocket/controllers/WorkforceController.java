@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "v1/workforce")
+@RequestMapping(value = "v1/workforces")
 @RefreshScope
 public class WorkforceController {
 
