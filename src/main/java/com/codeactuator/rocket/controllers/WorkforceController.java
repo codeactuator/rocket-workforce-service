@@ -43,7 +43,7 @@ public class WorkforceController {
     }
 
     @GetMapping("/{id}")
-    public Workforce findById(@PathVariable("id") Integer id){
+    public Workforce findById(@PathVariable("id") Long id){
         logger.debug("findById");
         Optional<Workforce> rocket = workforceRepository.findById(id);
         logger.debug("findById", rocket.get().toString());
