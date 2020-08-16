@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/rocket")
+@RequestMapping(value = "v1/workforce")
 @RefreshScope
 public class WorkforceController {
 
