@@ -1,20 +1,16 @@
 package com.codeactuator.rocket.controllers;
 
 
-import com.codeactuator.rocket.dao.WorkforceRepository;
-import com.codeactuator.rocket.domain.Workforce;
+import com.codeactuator.rocket.dto.WorkforceDTO;
+import com.codeactuator.rocket.service.WorkforceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
+import java.util.Collection;
 
 @RestController
 @RequestMapping(value = "v1/workforces")
@@ -24,7 +20,7 @@ public class WorkforceController {
     private Logger logger = LoggerFactory.getLogger(WorkforceController.class.getName());
 
     @Autowired
-    private WorkforceRepository workforceRepository;
+    private WorkforceService workforceService;
 
     @GetMapping(value = "/ping")
     public String ping(){
@@ -32,21 +28,35 @@ public class WorkforceController {
     }
 
     @GetMapping
-    public List<Workforce> findAll(){
-        logger.debug("findAll");
-        List<Workforce> workforces = new ArrayList<>();
-        workforceRepository.findAll()
-                .forEach(rocket -> workforces.add(rocket));
-
-        logger.debug("findAll", workforces.stream().findFirst().get().toString());
-        return workforces;
+    public Collection<WorkforceDTO> findAll(){
+        return workforceService.findAll()
+                .orElseThrow(() -> new EntityNotFoundException("No Workforce found!"));
     }
 
     @GetMapping("/{id}")
-    public Workforce findById(@PathVariable("id") Long id){
-        logger.debug("findById");
-        Optional<Workforce> rocket = workforceRepository.findById(id);
-        logger.debug("findById", rocket.get().toString());
-        return rocket.get();
+    public WorkforceDTO findById(@PathVariable("id") Long id){
+        return workforceService.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.valueOf(id)));
     }
+
+
+    @PostMapping
+    public WorkforceDTO create(@RequestBody WorkforceDTO workforceDTO){
+        return workforceService.create(workforceDTO)
+                .orElseThrow(() -> new RuntimeException("Workforce could not created: "+workforceDTO));
+    }
+
+
+    @PutMapping
+    public WorkforceDTO update(@RequestBody WorkforceDTO workforceDTO){
+        return workforceService.update(workforceDTO)
+                .orElseThrow(() -> new RuntimeException("Workforce could not updated: "+workforceDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public WorkforceDTO delete(@PathVariable("id") Long workforceId){
+        return workforceService.removeById(workforceId)
+                .orElseThrow(() -> new RuntimeException("Workforce could not deleted: "+workforceId));
+    }
+
 }
