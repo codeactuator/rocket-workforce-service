@@ -6,6 +6,7 @@ import com.codeactuator.rocket.dto.WorkforceDTO;
 import com.codeactuator.rocket.service.WorkforceService;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class WorkforceServiceImpl implements WorkforceService {
 
     @Autowired
